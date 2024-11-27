@@ -17,7 +17,15 @@ const JWT_SECRET = process.env.JWT_SECRET;
 app.use(Bodyparser.json());
 
 // Enable CORS with specified origin for frontend communication
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({ origin: "https://secret-share-web.onrender.com" }));
+
+//server all static files from react 
+app.use( express.static( path.join(__dirname , 'dist' )));
+
+//server index.html file for all routes
+app.get("*" , ( res , res ) => {
+    res.sendFile(path.join( __dirname , 'dist' , 'index.html'))
+} );
 
 //connect DB
 const mongoose = require("mongoose");
@@ -220,7 +228,7 @@ app.post("/change-password" , async (req , res ) => {
           const token = jwt.sign( { email:changeEmail } , process.env.JWT_SECRET , { expiresIn:"20min" })
 
           // 4th Step to Send Email with Reset Link
-            const resetLink = `http://localhost:5173/reset-password/${token}`;
+            const resetLink = `https://secret-share-web.onrender.com/reset-password/${token}`;
             const mailOptions = {
             from: process.env.EMAIL_USER,
             to: changeEmail,
