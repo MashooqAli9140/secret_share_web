@@ -24,28 +24,21 @@ app.use(
     })
   );
 
-
-
-
-
-
 app.use(Bodyparser.json());
-
 // Enable CORS with specified origin for frontend communication
 app.use(cors());
-
-app.use(express.static(path.join(__dirname, 'dist')));
-
 // Catch-all route to serve React's index.html for frontend routes
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
-
 //connect DB
 const mongoose = require("mongoose");
 const connectDB = require('./config/connectDB.js');
 connectDB();
+
+app.use(express.static(path.join(__dirname, 'dist')));
+
 
 //HANDLE SIGNUP USER DATA 
 app.post("/signup" , async (req , res ) => {
@@ -111,7 +104,8 @@ app.post("/login" , async (req , res ) => {
             id: Founduser._id,
             username: Founduser.username
         },
-        JWT_SECRET
+        JWT_SECRET,
+        { expiresIn: '1h' } // Token valid for 1 hour
     )
          console.log("Login success" , Founduser )
          return res.status(200).json( {data: token })
@@ -142,8 +136,7 @@ app.post("/newsecret" , async (req , res ) => {
 
     } catch (error) {
         console.log( error,"error while saving the new secret");
-        res.status(500).json({success: "false" , msge:"error while adding new secret" , error });
-    }
+        res.status(500).json({ success: false, msge: "An internal server error occurred." });    }
 })
 
 
@@ -168,8 +161,7 @@ app.put("/Edit-Secret/:id" , async (req , res ) => {
 
     } catch (error) {
         console.log( error,"error while updating the secret");
-        res.status(500).json({success: "false" , msge:"error while updating the secret" , error });
-    }
+        res.status(500).json({ success: false, msge: "An internal server error occurred." });    }
 })
 
 
@@ -186,8 +178,7 @@ app.delete("/delete-Secret/:postid" , async (req , res ) => {
 
     } catch (error) {
         console.log( error,"error while deleting the secret");
-        res.status(500).json({success: "false" , msge:"error while deleting the secret" , error });
-    }
+        res.status(500).json({ success: false, msge: "An internal server error occurred." });    }
 })
 
 
@@ -207,8 +198,7 @@ app.get("/get-secret" , async (req , res ) => {
 
     } catch (error) {
         console.log( error,"error while fetching the data");
-        res.status(500).json({success: "false" , msge:"error while fecthing the secrets" , error });
-    }
+        res.status(500).json({ success: false, msge: "An internal server error Get secret" });    }
 })
 
 
