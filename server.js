@@ -32,7 +32,7 @@ app.use(
 app.use(Bodyparser.json());
 
 // Enable CORS with specified origin for frontend communication
-app.use(cors({ origin: "https://secret-share-web.onrender.com" }));
+app.use(cors({ origin: "https://secret-share-web.onrender.com"}));
 
 app.use(express.static(path.join(__dirname, 'dist')));
 
