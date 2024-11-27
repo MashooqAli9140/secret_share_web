@@ -56,8 +56,8 @@ app.post("/signup" , async (req , res ) => {
     //if bothpw are not same then 
     if( password !== confirmpassword ) return res.status(400).json({msge: "password missmatch"});
 
-    //now secure the PW using BCRYPT
-    const HashedPW = await Bcrypt.hash( password , 10 );
+    //now secure the PW using bcrypt
+    const HashedPW = await bcrypt.hash( password , 10 );
 
     //save the user details to DB
     const saveUserdetails = await Usersignupdata.create( {
@@ -91,7 +91,7 @@ app.post("/login" , async (req , res ) => {
     if( !Founduser ) return res.status(400).json({msge: "username is not found"});
     
     //check if pw is same or not
-    const MatchedPW = await Bcrypt.compare( password , Founduser.password )
+    const MatchedPW = await bcrypt.compare( password , Founduser.password )
 
     //if PW is not matched then 
     if( !MatchedPW ) return res.status(400).json({msge: "password is incorrect"});
@@ -262,7 +262,7 @@ try {
     if (!Founduser) return res.status(404).json({ message: "Invalid token" });
     
     //if user is found then change the new password with old one
-    const HashedPW = await Bcrypt.hash( password , 10 );
+    const HashedPW = await bcrypt.hash( password , 10 );
     Founduser.password = HashedPW;
     Founduser.confirmpassword = confirmpassword;
     await Founduser.save();
