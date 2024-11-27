@@ -10,6 +10,7 @@ const cors = require("cors"); // Middleware to enable Cross-Origin Resource Shar
 const jwt = require("jsonwebtoken");
 const helmet = require('helmet'); // Helmet helps with security headers
 const JWT_SECRET = process.env.JWT_SECRET;
+const path = require("path");
 
 
 // Set Content Security Policy for fonts (adjust the URLs as needed)
