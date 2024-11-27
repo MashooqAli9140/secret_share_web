@@ -18,7 +18,7 @@ app.use(
     helmet.contentSecurityPolicy({
       directives: {
         defaultSrc: ["'self'"],
-        fontSrc: ["'self'", "https://fonts.googleapis.com", "https://fonts.gstatic.com" , "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" ],
+        fontSrc: ["'self'", "https://fonts.googleapis.com", "https://fonts.gstatic.com"],
         // Add any other necessary sources for your app
       },
     })
@@ -29,7 +29,7 @@ app.use(Bodyparser.json());
 app.use(cors());
 // Catch-all route to serve React's index.html for frontend routes
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
 });
 
 //connect DB
