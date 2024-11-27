@@ -8,7 +8,21 @@ const Bodyparser = require("body-parser");
 const Bcrypt = require( "bcrypt");
 const cors = require("cors"); // Middleware to enable Cross-Origin Resource Sharing (CORS)
 const jwt = require("jsonwebtoken");
+const helmet = require('helmet'); // Helmet helps with security headers
 const JWT_SECRET = process.env.JWT_SECRET;
+
+
+// Set Content Security Policy for fonts (adjust the URLs as needed)
+app.use(
+    helmet.contentSecurityPolicy({
+      directives: {
+        defaultSrc: ["'self'"],
+        fontSrc: ["'self'", "https://fonts.googleapis.com", "https://fonts.gstatic.com" , "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" ],
+        // Add any other necessary sources for your app
+      },
+    })
+  );
+
 
 
 
@@ -25,6 +39,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
+
 
 //connect DB
 const mongoose = require("mongoose");
