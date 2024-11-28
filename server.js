@@ -190,7 +190,7 @@ app.get("/get-secret" , async (req , res ) => {
 try {    
 const Getallthesecrets = await NewSecretdata.find();
  console.log("all secrets are here",Getallthesecrets )
- res.status(200).json( { data: Getallthesecrets , msge:"fecthing the secrets"})
+ res.status(200).json( {data: Getallthesecrets})
 
 } catch (error) {
     console.log( error,"error while fetching the data");
