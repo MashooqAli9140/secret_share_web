@@ -1,0 +1,67 @@
+
+.signupcard{
+    /* background-color: aqua; */
+    /* height: 500px; */
+    max-width: 300px;
+    margin: 40px auto 0;
+    border-radius: 10px;
+    padding: 20px 20px 20px 20px;
+    box-shadow: 1px 0px 7px 0.1px rgba(0 ,0 ,0 ,0.5);
+}
+#signupinputs{
+/* background-color: rgb(0, 174, 55); */
+height: 100%;
+width: 100%;
+/* display: none; */
+}
+#loginnputs{
+    /* background-color: rgb(0, 19, 75); */
+height: 100%;
+width: 100%;
+}
+
+
+label {
+    font-size: 16px; /* Adjust font size */
+    font-weight: bold; /* Make text bold */
+    color: #333; /* Change text color */
+    margin-bottom: 5px; /* Add spacing below the label */
+    display: block; /* Make the label take up its own line */
+  }
+#inputbox{
+    width: 100%;
+    padding: 15px 10px 15px 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 0.5px solid black;
+    color: black;
+    font-size: 16px;
+}
+#signupbtn{
+    width: 100%;
+    padding: 15px 10px 15px 10px;
+    border-radius: 25px;
+    outline: none;
+    border: none;
+    background: greenyellow;
+    color: white;
+    font-weight: 700;
+    font-size: 20px;
+    cursor: pointer;
+}
+#donthaveaccount{
+    /* background-color: antiquewhite; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 5px;
+    padding: 10px 10px 10px 10px;
+}
+#logintbn{
+    background: none;
+    border: none;
+    font-size: 18px;
+    color:#2988dc;
+    cursor: pointer;
+}
