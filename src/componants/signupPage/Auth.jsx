@@ -130,6 +130,7 @@ const Auth = () => {
           },
         }
       );
+      alert("reset link is sent on your Email")
       return response.status;
     } catch (error) {
       console.log("Password change error:", error);
